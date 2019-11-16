@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                     CGIS: Citas Pacientes TEAM SOCKET
+                     CGIS: Citas Pacientes TEAM SOCKET diego
                 </div>
 
                 <div class="links">
