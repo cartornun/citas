@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                     CGIS: Citas Pacientes TEAM SOCKET diego
+                     CGIS: Citas Pacientes ME FUNCIONA EL COMMIT?
                 </div>
 
                 <div class="links">
