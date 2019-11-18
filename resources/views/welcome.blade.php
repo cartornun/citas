@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                     CGIS: Citas Pacientes ME FUNCIONA EL COMMIT?
+                     CGIS: Citas Pacientes Team Socket
                 </div>
 
                 <div class="links">
