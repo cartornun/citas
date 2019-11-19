@@ -23,7 +23,7 @@ Route::resource('pacientes', 'PacienteController');
 Route::resource('localizacions', 'LocalizacionController');
 
 Route::resource('citas', 'CitaController');
-
+Route::resource('Enfermedades', 'EnfermedadController');
 
 
 

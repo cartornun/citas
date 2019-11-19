@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enfermedad;
+use App\Medico;
 use Illuminate\Http\Request;
 
 class EnfermedadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,6 +19,10 @@ class EnfermedadController extends Controller
      */
     public function index()
     {
+        $enfermedad = Enfermedad::all();
+
+        return view('enfermedades/index',['enfermedades'=>$enfermedad]);
+
         //
     }
 
@@ -23,7 +33,13 @@ class EnfermedadController extends Controller
      */
     public function create()
     {
+        $especialidades = Especialidad::all()->pluck('name','id');
+
+        return view('enfermedades/create',['especialidades'=>$especialidades]);
+
+
         //
+
     }
 
     /**
@@ -34,7 +50,16 @@ class EnfermedadController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'especialidad_id' => 'required|exists:especialidades,id'
+        ]);
+        $enfermedad = new Enfermedad($request->all());
+        $enfermedad->save();
         //
+        flash('Enfermedad creada correctamente');
+
+        return redirect()->route('enfermedades.index');
     }
 
     /**
@@ -56,7 +81,12 @@ class EnfermedadController extends Controller
      */
     public function edit($id)
     {
-        //
+        $enfermedad = Enfermedad::find($id);
+
+        $especialidades = Especialidad::all()->pluck('name','id');
+
+
+        return view('enfermedad/edit',['enfermedad'=> $enfermedad, 'especialidades'=>$especialidades ]);
     }
 
     /**
@@ -68,7 +98,19 @@ class EnfermedadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'especialidad_id' => 'required|exists:especialidads,id'
+        ]);
+
+        $enfermedad = Enfermedad::find($id);
+        $enfermedad->fill($request->all());
+
+        $enfermedad->save();
+
+        flash('Enfermedad modificado correctamente');
+
+        return redirect()->route('enfermedades.index');
     }
 
     /**
@@ -79,6 +121,10 @@ class EnfermedadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $enfermedad = Enfermedad::find($id);
+        $enfermedad->delete();
+        flash('Enfermedad borrado correctamente');
+
+        return redirect()->route('enfermedades.index');
     }
 }
