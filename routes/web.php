@@ -20,7 +20,7 @@ Route::resource('especialidades', 'EspecialidadController');
 
 Route::resource('medicos', 'MedicoController');
 Route::resource('pacientes', 'PacienteController');
-
+Route::resource('localizacions', 'LocalizacionController');
 
 Route::resource('citas', 'CitaController');
 
