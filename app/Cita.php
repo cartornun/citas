@@ -17,5 +17,13 @@ class Cita extends Model
     {
         return $this->belongsTo('App\Paciente');
     }
+    public function localizacion()
+    {
+        return $this->belongsTo('App\Localizacion');
+    }
+    public function duracion()
+    {
+        return $this->hasOne('App\Duracion');
+    }
 
 }

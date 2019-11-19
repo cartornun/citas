@@ -8,6 +8,10 @@ class Especialidad extends Model
 {
     //
     protected $fillable = ['name'];
+    public function enfermedad()
+    {
+        return $this->belongsTo('App\Enfermedad');
+    }
 
     public function medicos()
     {

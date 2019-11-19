@@ -18,7 +18,7 @@ class CreateLocalizacionsTable extends Migration
             $table->string('lugar');
             $table->unsignedInteger('cita_id');
             $table->timestamps();
-
+            /**/
             $table->foreign('cita_id')->references('id')->on('citas')->onDelete('cascade');
         });
     }

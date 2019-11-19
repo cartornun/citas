@@ -20,6 +20,7 @@ class CreateDuracionsTable extends Migration
 
             $table->unsignedInteger('cita_id');
             $table->timestamps();
+            /**/
 
             $table->foreign('cita_id')->references('id')->on('citas')->onDelete('cascade');
         });

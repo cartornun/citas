@@ -18,6 +18,7 @@ class CreateEspecialidadsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        /**/
     }
 
     /**
