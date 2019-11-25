@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Cita;
+use App\Duracion;
+use App\Enfermedad;
+use App\Especialidad;
+use App\Medico;
 use Illuminate\Http\Request;
 
 class DuracionController extends Controller
@@ -11,9 +16,15 @@ class DuracionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $duraciones = Duracion::all();
+
+        return view('duraciones/index',['duraciones'=>$duraciones]);
     }
 
     /**
@@ -23,7 +34,7 @@ class DuracionController extends Controller
      */
     public function create()
     {
-        //
+        $citas = Cita::all()->pluck('full_name','id');
     }
 
     /**
@@ -34,7 +45,18 @@ class DuracionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'fecha_inicio' => 'required|date|after:now',
+            'fecha_fin' => 'required|date|after:now',
+
+
+        ]);
+        $duracion = new Duracion($request->all());
+        $duracion->save();
+
+        flash('Duracion creada correctamente');
+
+        return redirect()->route('duraciones.index');
     }
 
     /**
@@ -56,7 +78,9 @@ class DuracionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $duracion = Duracion::find($id);
+
+        return view('duracion/edit',['duracion'=> $duracion ]);
     }
 
     /**
@@ -68,7 +92,19 @@ class DuracionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'fecha_inicio' => 'required|date|after:now',
+            'fecha_fin' => 'required|date|after:now',
+        ]);
+
+        $duracion = Duracion::find($id);
+        $duracion->fill($request->all());
+
+        $duracion->save();
+
+        flash('Duración modificada correctamente');
+
+        return redirect()->route('duraciones.index');
     }
 
     /**
@@ -79,6 +115,10 @@ class DuracionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $duracion = Duracion::find($id);
+        $duracion->delete();
+        flash('Duracion borrada correctamente');
+
+        return redirect()->route('duraciones.index');
     }
 }
