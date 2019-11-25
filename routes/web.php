@@ -1,63 +1,62 @@
-/**
-* Display the specified resource.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
 */
-public function show($id)
-{
-//
-}
 
-/**
-* Show the form for editing the specified resource.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function edit($id)
-{
-$localizaciones = Localizacion::find($id);
+Route::get('/', function () {
+    return view('welcome');
+});
+//Poner las acciones definidas por el programador antes del CRUD por defecto que monta Laravel
+Route::delete('especialidades/destroyAll', 'EspecialidadController@destroyAll')->name('especialidades.destroyAll');
+Route::resource('especialidades', 'EspecialidadController');
 
-return view('localizacions/edit',['localizacion'=> $localizaciones]);
-}
+Route::resource('medicos', 'MedicoController');
+Route::resource('pacientes', 'PacienteController');
+Route::resource('localizacions', 'LocalizacionController');
 
-/**
-* Update the specified resource in storage.
-*
-* @param  \Illuminate\Http\Request  $request
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function update(Request $request, $id)
-{
-$this->validate($request, [
-'lugar' => 'required|max:255'
-]);
+Route::resource('citas', 'CitaController');
+Route::resource('Enfermedades', 'EnfermedadController');
 
-$localizaciones = Localizacion::find($id);
-$localizaciones->fill($request->all());
+@extends('layouts.app')
 
-$localizaciones->save();
+@section('content')
+<div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Crear medico</div>
 
-flash('Localizacion modificada correctamente');
+                    <div class="panel-body">
+@include('flash::message')
 
-return redirect()->route('localizacions.index');
-}
+{!! Form::open(['route' => 'medicos.store']) !!}
+                        <div class="form-group">
+                            {!! Form::label('name', 'Nombre del medico') !!}
+                            {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('surname', 'Apellidos del medico') !!}
+                            {!! Form::text('surname',null,['class'=>'form-control', 'required']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!!Form::label('especialidad_id', 'Especialidad medico') !!}
+                            <br>
+                            {!! Form::select('especialidad_id', $especialidades, ['class' => 'form-control', 'required']) !!}
+                        </div>
+                        {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
-/**
-* Remove the specified resource from storage.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function destroy($id)
-{
-$localizaciones = Localizacion::find($id);
-$localizaciones->delete();
-flash('Localizacion borrada correctamente');
-
-return redirect()->route('localizacions.index');
-}
-}
-
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
