@@ -48,7 +48,7 @@ class DuracionController extends Controller
         $this->validate($request, [
             'fecha_inicio' => 'required|date|after:now',
             'fecha_fin' => 'required|date|after:now',
-
+            'fecha_demierda' => 'required|date|after:now',
 
         ]);
         $duracion = new Duracion($request->all());
