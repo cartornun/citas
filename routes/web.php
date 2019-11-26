@@ -26,3 +26,6 @@ Route::resource('duraciones', 'DuracionController');
 Route::resource('citas', 'CitaController');
 Route::resource('Enfermedades', 'EnfermedadController');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
