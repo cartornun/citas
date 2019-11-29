@@ -23,7 +23,7 @@ class LocalizacionController extends Controller
     {
         $localizacion = Localizacion::all();
 
-        return view('localizacions/index', ['localizacions' => $localizacion]);
+        return view('localizaciones/index', ['localizaciones' => $localizacion]);
     }
 
     /**

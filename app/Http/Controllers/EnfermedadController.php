@@ -19,9 +19,9 @@ class EnfermedadController extends Controller
      */
     public function index()
     {
-        $enfermedad = Enfermedad::all();
+        $enfermedades = Enfermedad::all();
 
-        return view('enfermedades/index',['enfermedades'=>$enfermedad]);
+        return view('enfermedades/index',['enfermedades'=>$enfermedades]);
 
         //
     }
@@ -35,7 +35,9 @@ class EnfermedadController extends Controller
     {
         $especialidades = Especialidad::all()->pluck('name','id');
 
-        return view('enfermedades/create',['especialidades'=>$especialidades]);
+        $pacientes = Paciente::all()->pluck('name','surname','nuhsa','id');
+
+        return view('enfermedades/create',['especialidades'=>$especialidades, 'pacientes'=>$pacientes]);
 
 
         //
@@ -52,7 +54,8 @@ class EnfermedadController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'especialidad_id' => 'required|exists:especialidades,id'
+            'especialidad_id' => 'required|exists:especialidades,id',
+            'paciente_id' => 'required|exists:pacientes,id'
         ]);
         $enfermedad = new Enfermedad($request->all());
         $enfermedad->save();
@@ -81,12 +84,13 @@ class EnfermedadController extends Controller
      */
     public function edit($id)
     {
-        $enfermedad = Enfermedad::find($id);
+        $enfermedades = Enfermedad::find($id);
 
         $especialidades = Especialidad::all()->pluck('name','id');
 
+        $pacientes = Paciente::all()->pluck('name','surname','nuhsa','id');
 
-        return view('enfermedad/edit',['enfermedad'=> $enfermedad, 'especialidades'=>$especialidades ]);
+        return view('enfermedades/edit',['enfermedades'=> $enfermedades, 'especialidades'=>$especialidades, 'pacientes'=>$pacientes ]);
     }
 
     /**
@@ -100,7 +104,8 @@ class EnfermedadController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'especialidad_id' => 'required|exists:especialidads,id'
+            'especialidad_id' => 'required|exists:especialidads,id',
+            'paciente_id' => 'required|exists:pacientes,id',
         ]);
 
         $enfermedad = Enfermedad::find($id);
