@@ -35,6 +35,8 @@ class DuracionController extends Controller
     public function create()
     {
         $citas = Cita::all()->pluck('full_name','id');
+
+        return view('duraciones/create',['citas'=>$citas]);
     }
 
     /**
@@ -48,7 +50,7 @@ class DuracionController extends Controller
         $this->validate($request, [
             'fecha_inicio' => 'required|date|after:now',
             'fecha_fin' => 'required|date|after:now',
-            'fecha_demierda' => 'required|date|after:now',
+
 
         ]);
         $duracion = new Duracion($request->all());
