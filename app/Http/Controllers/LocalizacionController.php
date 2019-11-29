@@ -100,7 +100,7 @@ class LocalizacionController extends Controller
 
         flash('Localizacion modificado correctamente');
 
-        return redirect()->route('Localizaciones.index');
+        return redirect()->route('localizaciones.index');
     }
 
     /**
