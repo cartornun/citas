@@ -35,7 +35,7 @@ class LocalizacionController extends Controller
     {
         $citas = Cita::all()->pluck('name', 'id');
 
-        return view('localizacions/create', ['citas' => $citas]);
+        return view('localizaciones/create', ['citas' => $citas]);
     }
 
     /**
@@ -54,7 +54,7 @@ class LocalizacionController extends Controller
 
         flash('Localizacion creada correctamente');
 
-        return redirect()->route('localizacions.index');
+        return redirect()->route('localizaciones.index');
     }
     public function show($id)
     {
@@ -76,7 +76,7 @@ class LocalizacionController extends Controller
 
 
 
-        return view('Localizacions/edit',['localizaciones'=> $Localizacion]);
+        return view('Localizaciones/edit',['localizaciones'=> $Localizacion]);
     }
 
     /**
