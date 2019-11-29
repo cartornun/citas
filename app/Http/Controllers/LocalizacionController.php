@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Especialidad;
 use App\Localizacion;
 use App\Medico;
 use Illuminate\Http\Request;
@@ -20,9 +21,9 @@ class LocalizacionController extends Controller
      */
     public function index()
     {
-        $localizaciones = Localizacion::all();
+        $localizacion = Localizacion::all();
 
-        return view('localizacions/index', ['localizacions' => $localizaciones]);
+        return view('localizacions/index', ['localizacions' => $localizacion]);
     }
 
     /**
@@ -32,9 +33,9 @@ class LocalizacionController extends Controller
      */
     public function create()
     {
-        $localizaciones = Localizacion::all()->pluck('name', 'id');
+        $citas = Cita::all()->pluck('name', 'id');
 
-        return view('localizacions/create', ['localizacions' => $localizaciones]);
+        return view('localizacions/create', ['citas' => $citas]);
     }
 
     /**
@@ -54,5 +55,66 @@ class LocalizacionController extends Controller
         flash('Localizacion creada correctamente');
 
         return redirect()->route('localizacions.index');
+    }
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+
+        $Localizacion = Localizacion::find($id);
+
+
+
+
+        return view('Localizacions/edit',['localizaciones'=> $Localizacion]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'lugar' => 'required|max:255',
+
+        ]);
+
+        $Localizacion = Localizacion::find($id);
+        $Localizacion->fill($request->all());
+
+        $Localizacion->save();
+
+        flash('Localizacion modificado correctamente');
+
+        return redirect()->route('Localizaciones.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $Localizacion = Localizacion::find($id);
+        $Localizacion->delete();
+        flash('localizacion borrado correctamente');
+
+        return redirect()->route('Localizaciones.index');
     }
 }
