@@ -26,4 +26,5 @@ class Cita extends Model
         return $this->hasOne('App\Duracion');
     }
 
+
 }
