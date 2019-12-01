@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+namespace Carbon;
 
 use App\Cita;
 use App\Duracion;
@@ -8,6 +9,7 @@ use App\Enfermedad;
 use App\Especialidad;
 use App\Medico;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DuracionController extends Controller
 {
@@ -48,10 +50,8 @@ class DuracionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'fecha_inicio' => 'required|date|after:now',
-            'fecha_fin' => 'required|date|after:now',
-
-
+            'fecha_inicio' => Carbon::now(), //'required|date|after:now', //Carbon::create('','required|max:2','required|max:2','required|max:2','required|max:4','null','null')
+            'fecha_fin' => Carbon::now()->addMinute(15),
         ]);
         $duracion = new Duracion($request->all());
         $duracion->save();
@@ -92,11 +92,11 @@ class DuracionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'fecha_inicio' => 'required|date|after:now',
-            'fecha_fin' => 'required|date|after:now',
+            'fecha_inicio' => Carbon::now(),
+            'fecha_fin' => Carbon::now()->addMinute(15),
         ]);
 
         $duracion = Duracion::find($id);
