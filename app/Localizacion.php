@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Localizacion extends Model
 {
-    protected $fillable = ['lugar'];
+    protected $fillable = ['hospital','consulta'];
     //
 
     public function citas()
