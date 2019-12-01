@@ -17,6 +17,10 @@
                             {!! Form::label('fecha_fin', 'Fecha fin cita') !!}
                             {!! Form::text('fecha_fin',null,['class'=>'form-control', 'required']) !!}
                         </div>
+                        <div class="form-group">
+                            {!!Form::label('cita', 'Cita') !!}
+                            <br>
+                            {!! Form::select('cita_id', $citas, ['class' => 'form-control', 'required']) !!}
                         </div>
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 

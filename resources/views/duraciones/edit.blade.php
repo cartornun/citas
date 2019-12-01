@@ -17,6 +17,11 @@
                             {!! Form::text('fecha_inicio',$duracion->fecha_inicio,['class'=>'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
+                            {!!Form::label('cita_id', 'Cita') !!}
+                            <br>
+                            {!! Form::select('cita_id', $cita, $duracion->cita_id, ['class' => 'form-control', 'required']) !!}
+                        </div>
+                        <div class="form-group">
                             {!! Form::label('fecha_fin', 'Fecha fin cita') !!}
                             {!! Form::text('fecha_fin',$duracion->fecha_fin,['class'=>'form-control', 'required']) !!}
                         </div>
