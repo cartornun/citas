@@ -16,11 +16,9 @@
                         <br><br>
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <th>Fecha</th>
                                 <th>Medico</th>
                                 <th>Paciente</th>
                                 <th>Localizacion</th>
-                                <th>Duracion</th>
                                 <th colspan="2">Acciones</th>
                             </tr>
 
@@ -28,10 +26,8 @@
 
 
                                 <tr>
-                                    <td>{{ $cita->fecha_hora }}</td>
                                     <td>{{ $cita->medico->full_name }}</td>
                                     <td>{{ $cita->paciente->full_name}}</td>
-                                    <td>{{ $cita->duracion->full_name}}</td>
                                     <td>{{ $cita->localizacion->full_name}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['citas.edit',$cita->id], 'method' => 'get']) !!}
@@ -51,4 +47,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection

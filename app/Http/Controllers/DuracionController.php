@@ -52,6 +52,7 @@ class DuracionController extends Controller
         $this->validate($request, [
             'fecha_inicio' => Carbon::now(), //'required|date|after:now', //Carbon::create('','required|max:2','required|max:2','required|max:2','required|max:4','null','null')
             'fecha_fin' => Carbon::now()->addMinute(15),
+            'cita_id' => 'required|exists:citas,id'
         ]);
         $duracion = new Duracion($request->all());
         $duracion->save();
@@ -82,6 +83,8 @@ class DuracionController extends Controller
     {
         $duracion = Duracion::find($id);
 
+        $cita = Cita::all()->pluck('full_name','id');
+
         return view('duracion/edit',['duracion'=> $duracion ]);
     }
 
@@ -97,6 +100,7 @@ public function update(Request $request, $id)
         $this->validate($request, [
             'fecha_inicio' => Carbon::now(),
             'fecha_fin' => Carbon::now()->addMinute(15),
+            'cita_id' => 'required|exists:citas,id'
         ]);
 
         $duracion = Duracion::find($id);

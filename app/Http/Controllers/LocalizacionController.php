@@ -21,9 +21,9 @@ class LocalizacionController extends Controller
      */
     public function index()
     {
-        $localizacion = Localizacion::all();
+        $localizaciones = Localizacion::all();
 
-        return view('localizaciones/index', ['localizaciones' => $localizacion]);
+        return view('localizaciones/index', ['localizaciones' => $localizaciones]);
     }
 
     /**
@@ -49,8 +49,8 @@ class LocalizacionController extends Controller
         $this->validate($request, [
             'lugar' => 'required|max:255'
         ]);
-        $localizaciones = new Localizacion($request->all());
-        $localizaciones->save();
+        $localizacion = new Localizacion($request->all());
+        $localizacion->save();
 
         flash('Localizacion creada correctamente');
 
@@ -74,9 +74,7 @@ class LocalizacionController extends Controller
         $Localizacion = Localizacion::find($id);
 
 
-
-
-        return view('Localizaciones/edit',['localizaciones'=> $Localizacion]);
+        return view('Localizaciones/edit',['localizacion'=> $Localizacion]);
     }
 
     /**
