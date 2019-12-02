@@ -10,7 +10,7 @@ class Enfermedad extends Model
     //
     public function especialidad()
     {
-        return $this->hasOne('App\Especialidad');
+        return $this->belongsTo('App\Especialidad');
     }
     public function paciente()
     {
