@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Cita;
 use App\Medico;
 use App\Paciente;
+use App\Localizacion;
 
 
 class CitaController extends Controller
@@ -39,9 +40,10 @@ class CitaController extends Controller
         $medicos = Medico::all()->pluck('full_name','id');
 
         $pacientes = Paciente::all()->pluck('full_name','id');
+        $localizaciones = Localizacion::all()->pluck('full_name','id');
 
 
-        return view('citas/create',['medicos'=>$medicos, 'pacientes'=>$pacientes]);
+        return view('citas/create',['medicos'=>$medicos, 'pacientes'=>$pacientes ,'localizaciones'=>$localizaciones]);
     }
 
     /**
