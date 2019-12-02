@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Localizacion;
 use Illuminate\Http\Request;
 use App\Cita;
 use App\Medico;
@@ -40,7 +41,7 @@ class CitaController extends Controller
 
         $pacientes = Paciente::all()->pluck('full_name','id');
 
-        $localizaciones = Paciente::all()->pluck('full_name','id');
+        $localizaciones = Localizacion::all()->pluck('full_name','id');
 
 
 

@@ -34,9 +34,9 @@ class LocalizacionController extends Controller
      */
     public function create()
     {
-        $citas = Cita::all()->pluck('name', 'id');
+        return view('localizaciones/create');
 
-        return view('localizaciones/create', ['citas' => $citas]);
+
     }
 
     /**
