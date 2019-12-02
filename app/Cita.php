@@ -19,7 +19,7 @@ class Cita extends Model
     }
     public function localizacion()
     {
-        return $this->hasOne('App\Localizacion');
+        return $this->belongsTo('App\Localizacion');
     }
 
 
