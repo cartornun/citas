@@ -17,10 +17,9 @@ class CreateLocalizacionsTable extends Migration
             $table->increments('id');
             $table->string('hospital');
             $table->string('consulta');
-            $table->unsignedInteger('cita_id');
             $table->timestamps();
             /**/
-            $table->foreign('cita_id')->references('id')->on('citas')->onDelete('cascade');
+
         });
     }
 
