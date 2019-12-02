@@ -76,7 +76,7 @@ class LocalizacionController extends Controller
         $Localizacion = Localizacion::find($id);
 
 
-        return view('Localizaciones/edit',['localizacion'=> $Localizacion]);
+        return view('localizaciones/edit',['localizacion'=> $Localizacion]);
     }
 
     /**
@@ -116,6 +116,6 @@ class LocalizacionController extends Controller
         $Localizacion->delete();
         flash('localizacion borrado correctamente');
 
-        return redirect()->route('Localizaciones.index');
+        return redirect()->route('localizaciones.index');
     }
 }
