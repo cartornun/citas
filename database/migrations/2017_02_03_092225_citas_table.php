@@ -15,7 +15,6 @@ class CitasTable extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('fecha_hora');
             $table->unsignedInteger('medico_id');
             $table->unsignedInteger('paciente_id');
 
