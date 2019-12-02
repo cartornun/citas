@@ -51,7 +51,7 @@ class DuracionController extends Controller
     {
         $this->validate($request, [
             'fecha_inicio' => Carbon::now(), //'required|date|after:now', //Carbon::create('','required|max:2','required|max:2','required|max:2','required|max:4','null','null')
-            'fecha_fin' => Carbon::now()->addMinute(15),
+            'fecha_fin' => Carbon::now()->addMinute(15), //fuera del validate, y fecha inico será carbon directamente al $citas-> fecha inicio, hacer protected date
             'cita_id' => 'required|exists:citas,id'
         ]);
         $duracion = new Duracion($request->all());

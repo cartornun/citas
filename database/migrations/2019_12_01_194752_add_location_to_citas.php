@@ -18,6 +18,7 @@ class AddLocationToCitas extends Migration
             $table->foreign('localizacion_id')->references('id')->on('localizacions');
         });
 
+
     }
 
     /**
@@ -27,6 +28,6 @@ class AddLocationToCitas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('AddLocationToCitas');
     }
 }
