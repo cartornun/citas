@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Paciente;
+use App\Providers\AppServiceProvider;
 
 class PacienteController extends Controller
 {
@@ -54,6 +55,21 @@ class PacienteController extends Controller
         ]);
 
         //TODO: crear validación propia para nuhsa
+        //nusha válido: * AN0415331870
+       /* public function nuhsa($nuhsa){
+
+        $letra = substr($nuhsa, 3, 2);
+        //$numero = substr($nuhsa, 3, 10);
+        if(strlen($nuhsa)!=12 ) {
+            return "Número de seguridad social incorrecto.";
+        }
+        if ($letra != 'AN'){
+            return "Número de seguridad social incorrecto.";
+        }
+       }*/
+
+
+
         $paciente = new Paciente($request->all());
         $paciente->save();
 
