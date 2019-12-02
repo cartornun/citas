@@ -16,7 +16,8 @@
                         <br><br>
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <th>lugar</th>
+                                <th>hospital</th>
+                                <th>consulta</th>
 
                                 <th colspan="2">Acciones</th>
                             </tr>
@@ -25,8 +26,8 @@
 
 
                                 <tr>
-                                    <td>{{ $localizacion->lugar }}</td>
-
+                                    <td>{{ $localizacion->hospital }}</td>
+                                    <td>{{ $localizacion->consulta }}</td>
                                     <td>
                                         {!! Form::open(['route' => ['localizaciones.edit',$localizacion->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
@@ -45,5 +46,6 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection
 

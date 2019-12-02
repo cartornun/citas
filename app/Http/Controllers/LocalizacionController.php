@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Especialidad;
 use App\Localizacion;
 use App\Medico;
+use App\Cita;
 use Illuminate\Http\Request;
 
 class LocalizacionController extends Controller
@@ -21,9 +22,9 @@ class LocalizacionController extends Controller
      */
     public function index()
     {
-        $localizacion = Localizacion::all();
+        $localizaciones = Localizacion::all();
 
-        return view('localizaciones/index', ['localizaciones' => $localizacion]);
+        return view('localizaciones/index', ['localizaciones' => $localizaciones]);
     }
 
     /**
@@ -47,10 +48,11 @@ class LocalizacionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'lugar' => 'required|max:255'
+            'hospital' => 'required|max:255',
+            'consulta' => 'required|max:255'
         ]);
-        $localizaciones = new Localizacion($request->all());
-        $localizaciones->save();
+        $localizacion = new Localizacion($request->all());
+        $localizacion->save();
 
         flash('Localizacion creada correctamente');
 
@@ -74,9 +76,7 @@ class LocalizacionController extends Controller
         $Localizacion = Localizacion::find($id);
 
 
-
-
-        return view('Localizaciones/edit',['localizaciones'=> $Localizacion]);
+        return view('Localizaciones/edit',['localizacion'=> $Localizacion]);
     }
 
     /**
@@ -89,7 +89,8 @@ class LocalizacionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'lugar' => 'required|max:255',
+            'hospital' => 'required|max:255',
+            'consulta' => 'required|max:255'
 
         ]);
 
