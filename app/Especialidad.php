@@ -10,7 +10,7 @@ class Especialidad extends Model
     protected $fillable = ['name'];
     public function enfermedad()
     {
-        return $this->belongsTo('App\Enfermedad');
+        return $this->hasMany('App\Enfermedad'); //cambiar a has many
     }
 
     public function medicos()

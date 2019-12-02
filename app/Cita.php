@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cita extends Model
 {
-    protected $fillable = ['medico_id', 'paciente_id', 'localizacion_id']; //añadido localizacion_id
+    protected $fillable = ['medico_id', 'paciente_id', 'localizacion_id', 'fecha_inicio'];
 
     public function medico()
     {
@@ -22,10 +22,5 @@ class Cita extends Model
     {
         return $this->belongsTo('App\Localizacion');
     }
-    public function duracion() //quitar esto
-    {
-        return $this->hasOne('App\Duracion');
-    }
-
 
 }
