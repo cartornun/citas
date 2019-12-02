@@ -36,11 +36,6 @@
                             <br>
                             {!! Form::select('localizacion_id', $localizaciones,$cita->localizacion_id, ['class' => 'form-control']) !!}
                         </div>
-                        <div class="form-group">
-                            {!!Form::label('duracion_id', 'Duracion') !!}
-                            <br>
-                            {!! Form::select('duracion_id', $duraciones,$cita->duracion_id, ['class' => 'form-control']) !!}
-                        </div>
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
                         {!! Form::close() !!}
