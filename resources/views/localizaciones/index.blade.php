@@ -26,8 +26,8 @@
 
 
                                 <tr>
-                                    <td>{{ $localizacion->lugar }}</td>
-
+                                    <td>{{ $localizacion->hospital }}</td>
+                                    <td>{{ $localizacion->consulta }}</td>
                                     <td>
                                         {!! Form::open(['route' => ['localizaciones.edit',$localizacion->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
