@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Cita;
 use App\Medico;
@@ -88,6 +89,14 @@ class CitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /*
+     * $this->validate($request, [
+            'fecha_inicio' => Carbon::now(), //'required|date|after:now', //Carbon::create('','required|max:2','required|max:2','required|max:2','required|max:4','null','null')
+            'fecha_fin' => Carbon::now()->addMinute(15),
+            'cita_id' => 'required|exists:citas,id'
+        ]);
+    */
     public function edit($id)
     {
 
