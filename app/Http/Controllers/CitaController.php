@@ -40,8 +40,10 @@ class CitaController extends Controller
 
         $pacientes = Paciente::all()->pluck('full_name','id');
 
+        $localizaciones = Paciente::all()->pluck('full_name','id');
 
-        return view('citas/create',['medicos'=>$medicos, 'pacientes'=>$pacientes]);
+
+        return view('citas/create',['medicos'=>$medicos, 'pacientes'=>$pacientes,'localizaciones'=>$localizaciones]);
     }
 
     /**
