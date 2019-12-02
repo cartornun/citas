@@ -16,7 +16,8 @@
                         <br><br>
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <th>lugar</th>
+                                <th>hospital</th>
+                                <th>consulta</th>
 
                                 <th colspan="2">Acciones</th>
                             </tr>
@@ -45,5 +46,6 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Especialidad;
 use App\Localizacion;
 use App\Medico;
+use App\Cita;
 use Illuminate\Http\Request;
 
 class LocalizacionController extends Controller
@@ -47,7 +48,8 @@ class LocalizacionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'lugar' => 'required|max:255'
+            'hospital' => 'required|max:255',
+            'consulta' => 'required|max:255'
         ]);
         $localizacion = new Localizacion($request->all());
         $localizacion->save();
@@ -87,7 +89,8 @@ class LocalizacionController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'lugar' => 'required|max:255',
+            'hospital' => 'required|max:255',
+            'consulta' => 'required|max:255'
 
         ]);
 

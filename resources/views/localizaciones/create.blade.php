@@ -12,10 +12,13 @@
 
                         {!! Form::open(['route' => 'localizaciones.store']) !!}
                         <div class="form-group">
-                            {!! Form::label('lugar', 'Lugar de la localizacion') !!}
-                            {!! Form::text('lugar',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('hospital', 'Hospital de la cita') !!}
+                            {!! Form::text('hospital',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
-
+                        <div class="form-group">
+                            {!! Form::label('consulta', 'Consulta de la cita') !!}
+                            {!! Form::text('consulta',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                        </div>
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
                         {!! Form::close() !!}

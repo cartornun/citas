@@ -69,7 +69,6 @@ class PacienteController extends Controller
        }*/
 
 
-
         $paciente = new Paciente($request->all());
         $paciente->save();
 
