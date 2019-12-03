@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enfermedad;
+use App\Especialidad;
 use App\Medico;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,7 @@ class EnfermedadController extends Controller
     {
         $especialidades = Especialidad::all()->pluck('name','id');
 
+
         $pacientes = Paciente::all()->pluck('name','surname','nuhsa','id');
 
         return view('enfermedades/create',['especialidades'=>$especialidades, 'pacientes'=>$pacientes]);
@@ -54,7 +56,7 @@ class EnfermedadController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'especialidad_id' => 'required|exists:especialidades,id',
+            'especialidad_id' => 'required|exists:especialidads,id',
             'paciente_id' => 'required|exists:pacientes,id'
         ]);
         $enfermedad = new Enfermedad($request->all());
