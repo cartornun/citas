@@ -16,13 +16,8 @@ class AddEnfermedadsToPacientes extends Migration
         Schema::dropIfExists('pacientes');
 
         Schema::create('pacientes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('nuhsa');
-            $table->unsignedInteger('enfermedad_id');
-            $table->timestamps();
 
+            $table->unsignedInteger('enfermedad_id');
             $table->foreign('enfermedad_id')->references('id')->on('enfermedads');
         });
     }
@@ -34,16 +29,7 @@ class AddEnfermedadsToPacientes extends Migration
      */
     public function down()
     {
-        Schema::drop('pacientes');
-        Schema::create('pacientes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('nuhsa');
-            $table->string('enfermedad');
-            $table->timestamps();
-
-        });
+        Schema::dropIfExists('addEnfermedadsToPacientes');
 
     }
 }
