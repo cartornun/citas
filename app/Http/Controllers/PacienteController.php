@@ -36,7 +36,7 @@ class PacienteController extends Controller
     public function create()
     {
         //
-        $enfermedades = Enfermedad::all()->pluck('name','id');
+        $enfermedades = Enfermedad::all()->pluck('full_name','id');
 
         return view('pacientes/create',['enfermedades'=>$enfermedades]);
 
