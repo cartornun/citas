@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Enfermedad extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','id_especialidad'];
     //
     public function especialidad()
     {
@@ -14,7 +14,7 @@ class Enfermedad extends Model
     }
     public function paciente()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->hasMany('App\Paciente');
     }
 
 
