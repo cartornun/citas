@@ -15,6 +15,7 @@ class CitasTable extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
+            //SI NO FUNCIONA, AÑADIR STRING MEDICO Y PACIENTE. Y en todas las tablas.
             $table->unsignedInteger('medico_id');
             $table->unsignedInteger('paciente_id');
             #$table->unsignedInteger('localizacion_id');
