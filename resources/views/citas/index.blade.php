@@ -29,9 +29,9 @@
 
                                 <tr>
                                     <td>{{ $cita->fecha_hora }}</td>
-                                    <td>{{ $cita->medico->full_name }}</td>
-                                    <td>{{ $cita->paciente->full_name}}</td>
-                                    <td>{{ $cita->localizacion->full_name}}</td>
+                                    <td>{{ $cita->medico->name }}</td>
+                                    <td>{{ $cita->paciente->name}}</td>
+                                    <td>{{ $cita->localizacion->name}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['citas.edit',$cita->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
@@ -50,4 +50,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection
