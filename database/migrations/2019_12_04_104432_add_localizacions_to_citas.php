@@ -13,6 +13,7 @@ class AddLocalizacionsToCitas extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('citas');
         Schema::table('citas', function (Blueprint $table){
             $table-> unsignedInteger('localizacion_id');
             $table->foreign('localizacion_id')->references('id')->on('localizacions');

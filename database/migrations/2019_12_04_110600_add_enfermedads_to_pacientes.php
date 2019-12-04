@@ -40,7 +40,7 @@ class AddEnfermedadsToPacientes extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('nuhsa');
-            $table->string('enfermedad_id');
+            $table->string('enfermedad');
             $table->timestamps();
 
         });

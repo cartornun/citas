@@ -13,10 +13,11 @@ class CreateEnfermedadsTable extends Migration
      */
     public function up()
     {
+
         Schema::create('enfermedads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('especialidad_id');
+           # $table->string('especialidad_id');
           //  $table->unsignedInteger('paciente_id');
             $table->unsignedInteger('especialidad_id');
             $table->timestamps();
