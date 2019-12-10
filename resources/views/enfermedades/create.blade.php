@@ -17,11 +17,6 @@
                         </div>
 
                         <div class="form-group">
-                            {!!Form::label('paciente_id', 'Paciente') !!}
-                            <br>
-                            {!! Form::select('paciente_id', $pacientes, ['class' => 'form-control']) !!}
-                        </div>
-                        <div class="form-group">
                             {!!Form::label('especialidad_id', 'Especialidad enfermedad') !!}
                             <br>
                             {!! Form::select('especialidad_id', $especialidades, ['class' => 'form-control', 'required']) !!}

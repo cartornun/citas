@@ -34,9 +34,9 @@ class LocalizacionController extends Controller
      */
     public function create()
     {
-        $citas = Cita::all()->pluck('name', 'id');
+        return view('localizaciones/create');
 
-        return view('localizaciones/create', ['citas' => $citas]);
+
     }
 
     /**
@@ -51,8 +51,8 @@ class LocalizacionController extends Controller
             'hospital' => 'required|max:255',
             'consulta' => 'required|max:255'
         ]);
-        $localizacion = new Localizacion($request->all());
-        $localizacion->save();
+        $localizaciones = new Localizacion($request->all());
+        $localizaciones->save();
 
         flash('Localizacion creada correctamente');
 
@@ -73,10 +73,10 @@ class LocalizacionController extends Controller
     {
         //
 
-        $Localizacion = Localizacion::find($id);
+        $localizaciones = Localizacion::find($id);
 
 
-        return view('Localizaciones/edit',['localizacion'=> $Localizacion]);
+        return view('localizaciones/edit',['localizaciones'=> $localizaciones]);
     }
 
     /**
@@ -94,10 +94,10 @@ class LocalizacionController extends Controller
 
         ]);
 
-        $Localizacion = Localizacion::find($id);
-        $Localizacion->fill($request->all());
+        $localizaciones = Localizacion::find($id);
+        $localizaciones->fill($request->all());
 
-        $Localizacion->save();
+        $localizaciones->save();
 
         flash('Localizacion modificado correctamente');
 
@@ -116,6 +116,6 @@ class LocalizacionController extends Controller
         $Localizacion->delete();
         flash('localizacion borrado correctamente');
 
-        return redirect()->route('Localizaciones.index');
+        return redirect()->route('localizaciones.index');
     }
 }

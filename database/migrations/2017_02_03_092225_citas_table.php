@@ -15,13 +15,16 @@ class CitasTable extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
+            //SI NO FUNCIONA, AÑADIR STRING MEDICO Y PACIENTE. Y en todas las tablas.
             $table->unsignedInteger('medico_id');
             $table->unsignedInteger('paciente_id');
+            #$table->unsignedInteger('localizacion_id');
 
             $table->timestamps();
 
             $table->foreign('medico_id')->references('id')->on('medicos')->onDelete('cascade');
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
+            #$table->foreign('localizacion_id')->references('id')->on('localizacions')->onDelete('cascade');
         });
     }
 

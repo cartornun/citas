@@ -18,7 +18,7 @@
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <th>nombre</th>
-                                <th>paciente</th>
+                                <th>especialidad</th>
 
                                 <th colspan="2">Acciones</th>
                             </tr>
@@ -28,6 +28,7 @@
 
                                 <tr>
                                     <td>{{ $enfermedad->nombre }}</td>
+                                    <td>{{ $enfermedad->especialidad->name }}</td>
 
                                     <td>
                                         {!! Form::open(['route' => ['enfermedades.edit',$enfermedad->id], 'method' => 'get']) !!}
@@ -47,4 +48,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection

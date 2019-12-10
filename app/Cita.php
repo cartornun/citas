@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Cita extends Model
 {
-    protected $fillable = ['medico_id', 'paciente_id', 'localizacion_id', 'fecha_inicio'];
+    protected $fillable = ['fecha_hora', 'medico_id', 'paciente_id','localizacion_id'];
 
     public function medico()
     {
@@ -22,5 +21,6 @@ class Cita extends Model
     {
         return $this->belongsTo('App\Localizacion');
     }
+
 
 }

@@ -17,10 +17,9 @@ class CreateLocalizacionsTable extends Migration
             $table->increments('id');
             $table->string('hospital');
             $table->string('consulta');
-            $table->unsignedInteger('cita_id');
             $table->timestamps();
             /**/
-            $table->foreign('cita_id')->references('id')->on('citas')->onDelete('cascade');
+
         });
     }
 
@@ -33,4 +32,37 @@ class CreateLocalizacionsTable extends Migration
     {
         Schema::dropIfExists('localizacions');
     }
+    //
+    //
+    //use Illuminate\Support\Facades\Schema;
+    //use Illuminate\Database\Schema\Blueprint;
+    //use Illuminate\Database\Migrations\Migration;
+    //
+    //class AddLocationToCitas extends Migration
+    //{
+    //    /**
+    //     * Run the migrations.
+    //     *
+    //     * @return void
+    //     */
+    //    public function up()
+    //    {
+    //        Schema::table('citas', function (Blueprint $table){
+    //            $table-> unsignedInteger('localizacion_id');
+    //            $table->foreign('localizacion_id')->references('id')->on('localizacions');
+    //        });
+    //
+    //
+    //    }
+    //
+    //    /**
+    //     * Reverse the migrations.
+    //     *
+    //     * @return void
+    //     */
+    //    public function down()
+    //    {
+    //        Schema::dropIfExists('AddLocationToCitas');
+    //    }
+    //}
 }
