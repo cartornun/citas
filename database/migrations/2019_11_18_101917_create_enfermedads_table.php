@@ -18,7 +18,7 @@ class CreateEnfermedadsTable extends Migration
             $table->increments('id');
             $table->string('name');
            # $table->string('especialidad_id');
-          //  $table->unsignedInteger('paciente_id');
+            $table->unsignedInteger('paciente_id');
             $table->unsignedInteger('especialidad_id');
             $table->timestamps();
 
