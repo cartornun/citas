@@ -182,6 +182,8 @@ return [
 
         // Para presentar mensajes de confirmación
         Laracasts\Flash\FlashServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*
