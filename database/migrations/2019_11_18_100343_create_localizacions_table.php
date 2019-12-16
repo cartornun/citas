@@ -18,7 +18,8 @@ class CreateLocalizacionsTable extends Migration
             $table->string('hospital');
             $table->string('consulta');
             $table->timestamps();
-            /**/
+            $table->softDeletes();
+
 
         });
     }

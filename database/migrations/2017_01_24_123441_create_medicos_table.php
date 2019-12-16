@@ -13,13 +13,17 @@ class CreateMedicosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('medicos');
         Schema::create('medicos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('surname');
-            $table->string('especialidad');
+            $table->unsignedInteger('especialidad_id');
             $table->timestamps();
-        });    }
+            $table->foreign('especialidad_id')->references('id')->on('especialidads');
+            $table->softDeletes();
+        });
+    }
 
     /**
      * Reverse the migrations.
