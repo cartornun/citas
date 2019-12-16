@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Localizacion extends Model
 {
-    use SoftDeletes;
+    use  SoftDeletes;
     protected $fillable = ['hospital', 'consulta'];
     //
 
@@ -15,8 +15,11 @@ class Localizacion extends Model
     {
         return $this->hasMany('App\Cita');
     }
+
+
     public function getFullNameAttribute()
     {
         return $this->hospital .' '.$this->consulta;
     }
 }
+
