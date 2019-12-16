@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -27,7 +26,7 @@
 
 
                                 <tr>
-                                    <td>{{ $enfermedad->nombre }}</td>
+                                    <td>{{ $enfermedad->name }}</td>
                                     <td>{{ $enfermedad->especialidad->name }}</td>
 
                                     <td>

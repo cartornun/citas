@@ -10,13 +10,15 @@
                     <div class="panel-body">
                         @include('flash::message')
                         {!! Form::open(['route' => 'citas.create', 'method' => 'get']) !!}
+                        <h1>Tu hora de salida es {{ $hora_fin }}</h1>
                         {!!   Form::submit('Crear cita', ['class'=> 'btn btn-primary'])!!}
                         {!! Form::close() !!}
 
                         <br><br>
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <th>Fecha</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Fin</th>
                                 <th>Medico</th>
                                 <th>Paciente</th>
                                 <th>Localizacion</th>
@@ -28,10 +30,11 @@
 
 
                                 <tr>
-                                    <td>{{ $cita->fecha_hora }}</td>
+                                    <td>{{ $cita->fecha_inicio }}</td>
+                                    <td>{{ $cita->fecha_fin }}</td>
                                     <td>{{ $cita->medico->name }}</td>
                                     <td>{{ $cita->paciente->name}}</td>
-                                    <td>{{ $cita->localizacion->name}}</td>
+                                    <td>{{ $cita->localizacion->full_name}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['citas.edit',$cita->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
