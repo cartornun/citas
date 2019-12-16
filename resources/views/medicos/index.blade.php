@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @include('flash::message')
                         {!! Form::open(['route' => 'medicos.create', 'method' => 'get']) !!}
-                        {!!   Form::submit('Crear medico', ['class'=> 'btn btn-primary'])!!}
+                        {!!     Form::submit('Crear medico', ['class'=> 'btn btn-primary'])!!}
                         {!! Form::close() !!}
 
                         <br><br>
