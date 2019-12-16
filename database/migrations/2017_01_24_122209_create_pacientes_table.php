@@ -21,7 +21,7 @@ class CreatePacientesTable extends Migration
             $table->string('nuhsa');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('enfermedad_id')->references('id')->on('enferedads')->onDelete('cascade');
+            $table->foreign('enfermedad_id')->references('id')->on('enfermedads')->onDelete('restrict');
 
         });
     }

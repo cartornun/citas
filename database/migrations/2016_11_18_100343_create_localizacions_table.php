@@ -19,7 +19,7 @@ class CreateLocalizacionsTable extends Migration
             $table->string('consulta');
             $table->timestamps();
             $table->softDeletes();
-
+            /**/
 
         });
     }
