@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Localizacion;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Cita;
 use App\Medico;
@@ -26,8 +27,9 @@ class CitaController extends Controller
     public function index()
     {
         $citas = Cita::all();
+        $hora_fin = Carbon::createFromDate(Cita::whereBetween('fecha_fin',[Carbon::today(),Carbon::tomorrow()])->orderBy('fecha_fin','desc')->first()->fecha_fin)->format('H:i');
 
-        return view('citas/index',['citas'=>$citas]);
+        return view('citas/index',['citas'=>$citas,'hora_fin'=>$hora_fin]);
     }
 
     /**
@@ -59,12 +61,13 @@ class CitaController extends Controller
         $this->validate($request, [
             'medico_id' => 'required|exists:medicos,id',
             'paciente_id' => 'required|exists:pacientes,id',
-            'fecha_hora' => 'required|date|after:now',
-            'localizaciones_id' => 'required|exists:localizaciones,id',
+            'fecha_inicio' => 'required|date|after:now',
+            'localizacion_id' => 'required|exists:localizacions,id',
 
         ]);
 
         $cita = new Cita($request->all());
+        $cita->fecha_fin = Carbon::createFromDate($cita->fecha_inicio)->addMinutes(15)->format('Y-m-d\TH:i');
         $cita->save();
 
 
@@ -99,10 +102,10 @@ class CitaController extends Controller
 
         $pacientes = Paciente::all()->pluck('full_name','id');
 
-        $localizaciones = Paciente::all()->pluck('full_name','id');
+        $localizaciones = Localizacion::all()->pluck('full_name','id');
 
 
-        return view('citas/edit',['cita'=> $cita, 'medicos'=>$medicos, 'pacientes'=>$pacientes,'loclizaciones'=>$localizaciones]);
+        return view('citas/edit',['cita'=> $cita, 'medicos'=>$medicos, 'pacientes'=>$pacientes,'localizaciones'=>$localizaciones]);
     }
 
     /**
@@ -117,8 +120,9 @@ class CitaController extends Controller
         $this->validate($request, [
             'medico_id' => 'required|exists:medicos,id',
             'paciente_id' => 'required|exists:pacientes,id',
-            'fecha_hora' => 'required|date|after:now',
-            'localizaciones_id' => 'required|exists:localizaciones,id',
+            'fecha_inicio' => 'required|date|after:now',
+            'fecha_fin'=> 'required|date|after:fecha_inicio',
+            'localizacion_id' => 'required|exists:localizacions,id',
 
         ]);
         $cita = Cita::find($id);
