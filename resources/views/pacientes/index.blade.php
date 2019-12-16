@@ -14,6 +14,18 @@
                         {!! Form::close() !!}
 
                         <br><br>
+                        @if($especialidades)
+                        <div class="form-group">
+                            {!!Form::label('especialidad', 'Especialidad de la enfermedad') !!}
+                            <br>
+                            <select class="especialidad" id="especialidad" name="especialidad">
+                                <option value="">Seleccione una especialidad</option>
+                                @foreach($especialidades as $especialidad)
+                                    <option value="{{$especialidad->id}}">{{$especialidad->name}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        @endif
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <th>Nombre</th>
@@ -23,7 +35,6 @@
 
                                 <th colspan="2">Acciones</th>
                             </tr>
-
                             @foreach ($pacientes as $paciente)
 
 
@@ -45,6 +56,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+
                         </table>
                     </div>
                 </div>
@@ -52,3 +64,21 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+
+    <script>
+        $(document).ready(function() {
+            $('.especialidad').select2();
+            $('.especialidad').change(function () {
+                $.ajax({
+                    url:'{{route('filtro-especialidad')}}',
+                    data:{especialidad:$(this).val()},
+                    success:function (data) {
+                        $('.table').html(data)
+                    }
+                })
+            })
+        });
+    </script>
+    @endsection
