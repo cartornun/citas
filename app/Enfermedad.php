@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Enfermedad extends Model
 {
-    use SoftDeletes;
+    use  SoftDeletes;
     protected $fillable = ['name','especialidad_id'];
     //
     public function especialidad()
@@ -19,5 +19,10 @@ class Enfermedad extends Model
         return $this->hasMany('App\Paciente');
     }
 
+    public function getName(){
+        return $this->name;
+    }
+
 
 }
+
