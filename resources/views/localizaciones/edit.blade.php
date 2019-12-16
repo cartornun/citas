@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -10,15 +8,16 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::model($localizacion, [ 'route' => ['localizaciones.update',$localizacion->id], 'method'=>'PUT']) !!}
+                        {!! Form::model($localizaciones, [ 'route' => ['localizaciones.update',$localizaciones->id], 'method'=>'PUT']) !!}
+
 
                         <div class="form-group">
                             {!! Form::label('hospital', 'Hospital de la cita') !!}
-                            {!! Form::text('hospital',$hospital->name,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::text('hospital',$localizaciones->hospital,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('consulta', 'Consulta de la cita) !!}
-                            {!! Form::text('consulta',$consulta->name,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('consulta', 'Consulta de la cita') !!}
+                            {!! Form::text('consulta',$localizaciones->consulta,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
