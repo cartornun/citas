@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Especialidad extends Model
 {
-    //
     use SoftDeletes;
+    //
     protected $fillable = ['name'];
     public function enfermedad()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enfermedad;
 use App\Especialidad;
 use Illuminate\Http\Request;
 use App\Paciente;
@@ -24,8 +25,23 @@ class PacienteController extends Controller
         //
 
         $pacientes = Paciente::all();
+        $especialidades = Especialidad::all();
 
-        return view('pacientes/index',['pacientes'=>$pacientes]);
+        return view('pacientes/index',compact('pacientes','especialidades'));
+    }
+
+    /**
+     * Display a listing of the resource from especialidad
+     */
+    public function getFromEspecialidad(Request $request){
+        if ($request->especialidad != null){
+            $enfermedades = Enfermedad::where('especialidad_id',$request->especialidad)->select('id')->get();
+            $pacientes = Paciente::whereIn('enfermedad_id',$enfermedades)->get();
+        }else{
+            $pacientes = Paciente::all();
+        }
+
+        return view('pacientes/table',compact('pacientes'));
     }
 
     /**
@@ -36,7 +52,7 @@ class PacienteController extends Controller
     public function create()
     {
         //
-        $enfermedades = Enfermedad::all()->pluck('full_name','id');
+        $enfermedades = Enfermedad::all()->pluck('name','id');
 
         return view('pacientes/create',['enfermedades'=>$enfermedades]);
 

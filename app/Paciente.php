@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class Paciente extends Model
 {
     //
@@ -17,7 +16,8 @@ class Paciente extends Model
     {
         return $this->hasMany('App\Cita');
     }
-    public function enfermedads()
+
+    public function enfermedad()
     {
         return $this->belongsTo('App\Enfermedad');
     }

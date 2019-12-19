@@ -26,8 +26,13 @@ class CitaController extends Controller
      */
     public function index()
     {
-        $citas = Cita::all();
-        $hora_fin = Carbon::createFromDate(Cita::whereBetween('fecha_fin',[Carbon::today(),Carbon::tomorrow()])->orderBy('fecha_fin','desc')->first()->fecha_fin)->format('H:i');
+        //$citas = Cita::all()->groupBy('fecha_fin',desc);
+        $citas = Cita ::all();
+        $hora_fin = Cita::whereBetween('fecha_fin',[Carbon::today(),Carbon::tomorrow()])->orderBy('fecha_fin', 'desc')->first();
+        if ($hora_fin)
+            $hora_fin = Carbon::createFromDate($hora_fin->fecha_fin)->format('H:i');
+        else
+            $hora_fin = 'no hay citas de momento.';
 
         return view('citas/index',['citas'=>$citas,'hora_fin'=>$hora_fin]);
     }
@@ -68,6 +73,7 @@ class CitaController extends Controller
 
         $cita = new Cita($request->all());
         $cita->fecha_fin = Carbon::createFromDate($cita->fecha_inicio)->addMinutes(15)->format('Y-m-d\TH:i');
+        //$cita=$cita->groupBy('fecha_inicio',desc) ;
         $cita->save();
 
 
@@ -121,7 +127,7 @@ class CitaController extends Controller
             'medico_id' => 'required|exists:medicos,id',
             'paciente_id' => 'required|exists:pacientes,id',
             'fecha_inicio' => 'required|date|after:now',
-            'fecha_fin'=> 'required|date|after:fecha_inicio',
+            'fecha_fin' => 'required|date|after:fecha_inicio',
             'localizacion_id' => 'required|exists:localizacions,id',
 
         ]);
