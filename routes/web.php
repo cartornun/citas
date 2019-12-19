@@ -25,7 +25,7 @@ Route::resource('medicos', 'MedicoController');
 Route::resource('pacientes', 'PacienteController');
 Route::resource('localizaciones', 'LocalizacionController');
 
-
+Route::get('citas/citasPasadas','CitaController@citasPasadas')->name('citas.citasPasadas');
 Route::resource('citas', 'CitaController');
 Route::resource('enfermedades', 'EnfermedadController');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enfermedad;
 use App\Localizacion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -27,15 +28,24 @@ class CitaController extends Controller
     public function index()
     {
         //$citas = Cita::all()->groupBy('fecha_fin',desc);
-        $citas = Cita ::all();
+        //$citas = Cita::all()->sortBy('fecha_fin', 'desc')->get();
+        $citas = Cita ::all()->sortBy('fecha_fin');
         $hora_fin = Cita::whereBetween('fecha_fin',[Carbon::today(),Carbon::tomorrow()])->orderBy('fecha_fin', 'desc')->first();
         if ($hora_fin)
             $hora_fin = Carbon::createFromDate($hora_fin->fecha_fin)->format('H:i');
         else
             $hora_fin = 'no hay citas de momento.';
 
-        return view('citas/index',['citas'=>$citas,'hora_fin'=>$hora_fin]);
+        return view('citas/index',['citas'=>$citas->where('fecha_fin', '>', Carbon::now()),'hora_fin'=>$hora_fin]);
+
+
     }
+    public function citasPasadas(){
+        $citas = Cita::all()->sortBy('fecha_fin');
+
+        return view('citas/citasPasadas',['citas'=>$citas->where('fecha_fin', '<', Carbon::now())]);
+        }
+
 
     /**
      * Show the form for creating a new resource.
