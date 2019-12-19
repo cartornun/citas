@@ -21,7 +21,7 @@ class Paciente extends Model
     {
         return $this->belongsTo('App\Enfermedad');
     }
-   ##enfermedades-paciente
+    ##enfermedades-paciente
 
     public function getFullNameAttribute()
     {

@@ -22,3 +22,4 @@ class Localizacion extends Model
         return $this->hospital .' '.$this->consulta;
     }
 }
+

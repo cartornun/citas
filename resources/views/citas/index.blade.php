@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @include('flash::message')
                         {!! Form::open(['route' => 'citas.create', 'method' => 'get']) !!}
-                        <h1>Tu hora de salida es {{ $hora_fin }}</h1>
+                        <h1>Su hora de salida es: {{ $hora_fin }}</h1>
                         {!!   Form::submit('Crear cita', ['class'=> 'btn btn-primary'])!!}
                         {!! Form::close() !!}
 
