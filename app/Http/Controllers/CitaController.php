@@ -36,7 +36,7 @@ class CitaController extends Controller
         else
             $hora_fin = 'no hay citas de momento.';
 
-        return view('citas/index',['citas'=>$citas->where('fecha_fin', '>', Carbon::now()),'hora_fin'=>$hora_fin]);
+        return view('citas/index',['citas'=>$citas->where('fecha_fin', '>', Carbon::now()),'hora_fin'=>($hora_fin)]);
 
 
     }
@@ -76,7 +76,7 @@ class CitaController extends Controller
         $this->validate($request, [
             'medico_id' => 'required|exists:medicos,id',
             'paciente_id' => 'required|exists:pacientes,id',
-            'fecha_inicio' => 'required|date|after:now',
+            'fecha_inicio' => 'required|date',
             'localizacion_id' => 'required|exists:localizacions,id',
 
         ]);
